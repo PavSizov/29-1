@@ -6,9 +6,15 @@ class Talent
 public:
     virtual void show_talents() = 0;
 
+
+
 protected:
     std::string name;
+
 };
+
+
+
 
 class Swimming : virtual public Talent
 {
@@ -43,14 +49,16 @@ public:
 class Dog : virtual public Swimming,virtual public Dancing, virtual public Counting
 {
 public:
+    std::vector <Talent*> arr;
     Dog() {};
     Dog ( std::string _name)
     {
         name = _name;
+
     }
-    virtual void show_talents()
+    virtual void set_talents()
     {
-        std::vector <Talent*> arr ;
+        ;
         std::string tal;
         std::cout << "Enter talents Swimming, Dancing, Counting" << std::endl;
         std::cin >> tal;
@@ -68,6 +76,10 @@ public:
             if (tal == "Counting") arr.push_back(new Counting());
 
         }
+    }
+    virtual void show_talents()
+    {
+
         std::cout << "This is " << name << " it has some talents:"<< std::endl;
 
         for (int i = 0; i < arr.size(); ++i)
@@ -77,13 +89,14 @@ public:
 };
 
 
+
+
 int main()
 {
 
     Dog d ("Steve");
-
+    d.set_talents();
     d.show_talents();
 
     return 0;
 }
-
